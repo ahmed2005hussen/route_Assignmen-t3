@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Car Rental Management System/Car Rental Management System.iml" filepath="$PROJECT_DIR$/../Car Rental Management System/Car Rental Management System.iml" />
       <module fileurl="file://$PROJECT_DIR$/Student Management System.iml" filepath="$PROJECT_DIR$/Student Management System.iml" />
     </modules>
   </component>
