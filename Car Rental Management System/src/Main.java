@@ -7,7 +7,8 @@ class Main {
     Car[] cars = new Car[20];
     Customer[] customers = new Customer[20];
 
-    int currentCar = 0 ;
+    int currentCar = 0;
+    int currentCustomer = 0;
 
 
     int menu() {
@@ -33,12 +34,21 @@ class Main {
         return (choice >= 0 && choice <= 10) ? choice : -1;
     }
 
-    boolean findCarWithId(int id ){
+    boolean isfindCarWithCarId(int id) {
 
+        for (int i = 0; i < currentCar; i++) {
+            if (cars[i].getCarID() == id) return true;
+        }
+        return false;
+    }
+
+    boolean isFullCarsCapicity() {
+
+        return currentCar == 20;
     }
 
 
-    void addRegularCar(){
+    void addRegularCar() {
 
         System.out.println("Enter the id, integer id: ");
         int id = sc.nextInt();
@@ -55,8 +65,56 @@ class Main {
 
         System.out.println("Enter the price per day: ");
         int pricePerDay = sc.nextInt();
-        Car car = new Car( id,  brand,  model,  year, pricePerDay) ;
+        if (!isfindCarWithCarId(id) && !isFullCarsCapicity()) {
+            Car car = new Car(id, brand, model, year, pricePerDay);
+            System.out.println(car);
+        }
+        else{
+            if(isFullCarsCapicity()) {
+                System.out.println("We don't have place in our array :( ");
+            }
+            else{
+                System.out.println("This id was Used, try another one ");
+            }
+        }
 
+        System.out.println("-----------------------");
+
+
+    }
+
+    void addLuxuryCar() {
+//
+//        System.out.println("Enter the id, integer id: ");
+//        int id = sc.nextInt();
+//        sc.nextLine();
+//
+//        System.out.println("Enter the brand name: ");
+//        String brand = sc.nextLine();
+//
+//        System.out.println("Enter the model: ");
+//        String model = sc.nextLine();
+//
+//        System.out.println("Enter the year: ");
+//        int year = sc.nextInt();
+//
+//        System.out.println("Enter the price per day: ");
+//        int pricePerDay = sc.nextInt();
+//        if (!isfindCarWithCarId(id) && !isFullCarsCapicity()) {
+//            Car car = new Car(id, brand, model, year, pricePerDay);
+//            System.out.println(car);
+//        }
+//        else{
+//            if(isFullCarsCapicity()) {
+//                System.out.println("We don't have place in our array :( ");
+//            }
+//            else{
+//                System.out.println("This id was Used, try another one ");
+//            }
+//        }
+//
+//        System.out.println("-----------------------");
+//
 
     }
 
@@ -70,16 +128,15 @@ class Main {
 
             int choice = menu();
 
-            switch (choice){
+            switch (choice) {
 
-                case 0 -> {break loop; }
+                case 0 -> {
+                    break loop;
+                }
 
                 case 1 -> addRegularCar();
 
-
-
-
-
+                case 2 -> addLuxuryCar();
 
             }
 

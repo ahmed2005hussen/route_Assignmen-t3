@@ -73,4 +73,16 @@ public class Car {
     }
 
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carID=" + carID +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", year=" + year +
+                ", pricePerDay=" + pricePerDay +
+                ", isAvailable=" + isAvailable +
+                ", taxRate=" + taxRate +
+                '}';
+    }
 }
