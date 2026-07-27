@@ -28,4 +28,18 @@ public class LuxuryCar extends Car {
     public void setMinRentalDays(int minRentalDays) {
         this.minRentalDays = minRentalDays;
     }
+
+    @Override
+    public String toString() {
+        return "LuxuryCar{" + "carID=" + this.getCarID() +
+                ", brand='" + this.getBrand() + '\'' +
+                ", model='" + this.getModel() + '\'' +
+                ", year=" + this.getYear() +
+                ", pricePerDay=" + this.getPricePerDay() +
+                ", isAvailable=" + this.getInsuranceFee() +
+                ", taxRate=" + this.getTaxRate() +
+                "insuranceFee=" + insuranceFee +
+                ", minRentalDays=" + minRentalDays +
+                '}';
+    }
 }

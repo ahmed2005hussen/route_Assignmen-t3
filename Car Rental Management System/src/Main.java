@@ -66,8 +66,8 @@ class Main {
         int pricePerDay = sc.nextInt();
         if (!isfindCarWithCarId(id) && !isFullCarsCapicity()) {
             Car car = new Car(id, brand, model, year, pricePerDay);
-            System.out.println("Add successfully");
-
+            System.out.println("Add Regular car successfully");
+            cars[currentCar++] = car;
             System.out.println(car);
         }
         else{
@@ -106,7 +106,8 @@ class Main {
 
         if (!isfindCarWithCarId(id) && !isFullCarsCapicity()) {
             LuxuryCar car = new LuxuryCar(id, brand, model, year, pricePerDay , insuranceFee);
-            System.out.println("Add successfully");
+            System.out.println("Add Luxury Car successfully");
+            cars[currentCar++] = car;
             System.out.println(car);
         }
         else{
@@ -124,8 +125,6 @@ class Main {
     }
 
 
-
-    
     public void main(String[] args) {
 
 
