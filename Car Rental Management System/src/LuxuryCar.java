@@ -9,6 +9,12 @@ public class LuxuryCar extends Car {
         this.insuranceFee = insuranceFee;
         this.minRentalDays = 3;
     }
+    public LuxuryCar(int carID, String brand, String model, int year, double pricePerDay
+                     , double insuranceFee ) {
+        super(carID, brand, model, year, pricePerDay, true);
+        this.insuranceFee = insuranceFee;
+        this.minRentalDays = 3;
+    }
 
 
     public double getInsuranceFee() {

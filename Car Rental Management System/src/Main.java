@@ -47,7 +47,6 @@ class Main {
         return currentCar == 20;
     }
 
-
     void addRegularCar() {
 
         System.out.println("Enter the id, integer id: ");
@@ -67,6 +66,8 @@ class Main {
         int pricePerDay = sc.nextInt();
         if (!isfindCarWithCarId(id) && !isFullCarsCapicity()) {
             Car car = new Car(id, brand, model, year, pricePerDay);
+            System.out.println("Add successfully");
+
             System.out.println(car);
         }
         else{
@@ -84,41 +85,47 @@ class Main {
     }
 
     void addLuxuryCar() {
-//
-//        System.out.println("Enter the id, integer id: ");
-//        int id = sc.nextInt();
-//        sc.nextLine();
-//
-//        System.out.println("Enter the brand name: ");
-//        String brand = sc.nextLine();
-//
-//        System.out.println("Enter the model: ");
-//        String model = sc.nextLine();
-//
-//        System.out.println("Enter the year: ");
-//        int year = sc.nextInt();
-//
-//        System.out.println("Enter the price per day: ");
-//        int pricePerDay = sc.nextInt();
-//        if (!isfindCarWithCarId(id) && !isFullCarsCapicity()) {
-//            Car car = new Car(id, brand, model, year, pricePerDay);
-//            System.out.println(car);
-//        }
-//        else{
-//            if(isFullCarsCapicity()) {
-//                System.out.println("We don't have place in our array :( ");
-//            }
-//            else{
-//                System.out.println("This id was Used, try another one ");
-//            }
-//        }
-//
-//        System.out.println("-----------------------");
-//
+        System.out.println("Enter the id, integer id: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        System.out.println("Enter the brand name: ");
+        String brand = sc.nextLine();
+
+        System.out.println("Enter the model: ");
+        String model = sc.nextLine();
+
+        System.out.println("Enter the year: ");
+        int year = sc.nextInt();
+
+        System.out.println("Enter the price per day: ");
+        int pricePerDay = sc.nextInt();
+
+        System.out.println("Enter insurance fee: ");
+        double insuranceFee = sc.nextDouble();
+
+        if (!isfindCarWithCarId(id) && !isFullCarsCapicity()) {
+            LuxuryCar car = new LuxuryCar(id, brand, model, year, pricePerDay , insuranceFee);
+            System.out.println("Add successfully");
+            System.out.println(car);
+        }
+        else{
+            if(isFullCarsCapicity()) {
+                System.out.println("We don't have place in our array :( ");
+            }
+            else{
+                System.out.println("This id was Used, try another one ");
+            }
+        }
+
+        System.out.println("-----------------------");
+
 
     }
 
 
+
+    
     public void main(String[] args) {
 
 
