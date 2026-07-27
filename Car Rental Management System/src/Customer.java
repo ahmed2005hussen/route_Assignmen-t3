@@ -18,6 +18,9 @@ public class Customer {
         this.paid = paid;
         count++;
     }
+    public Customer(int cutomerId, String name, String phone) {
+        this(cutomerId , name , phone , -1 , 0 , 0);
+    }
 
     public int getCutomerId() {
         return cutomerId;
