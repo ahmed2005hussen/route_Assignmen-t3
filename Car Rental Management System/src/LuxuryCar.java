@@ -31,7 +31,7 @@ public class LuxuryCar extends Car {
 
     @Override
     public String toString() {
-        return "LuxuryCar{" + "carID=" + this.getCarID() +
+        return " LuxuryCar{" + "carID=" + this.getCarID() +
                 ", brand='" + this.getBrand() + '\'' +
                 ", model='" + this.getModel() + '\'' +
                 ", year=" + this.getYear() +

@@ -7,6 +7,7 @@ public class Customer {
     private int rentedDays;
     private double paid;
     private static int count;
+    private static double totalPaid;
 
     public Customer(int cutomerId, String name, String phone,
                     int rentedCarId, int rentedDays, double paid) {
@@ -18,8 +19,9 @@ public class Customer {
         this.paid = paid;
         count++;
     }
+
     public Customer(int cutomerId, String name, String phone) {
-        this(cutomerId , name , phone , -1 , 0 , 0);
+        this(cutomerId, name, phone, -1, 0, 0);
     }
 
     public int getCutomerId() {
@@ -68,11 +70,26 @@ public class Customer {
 
     public void setPaid(double paid) {
         this.paid = paid;
+        totalPaid += paid;
     }
 
     public static int getCount() {
         return count;
     }
 
+    public static double getTotalPaid() {
+        return totalPaid;
+    }
 
+    @Override
+    public String toString() {
+        return " Customer{" +
+                "cutomerId=" + cutomerId +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", rentedCarId=" + rentedCarId +
+                ", rentedDays=" + rentedDays +
+                ", paid=" + paid +
+                '}';
+    }
 }

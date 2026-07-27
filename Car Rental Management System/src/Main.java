@@ -60,7 +60,6 @@ class Main {
         return currentCustomer == 20;
     }
 
-
     void addRegularCar() {
 
         System.out.print("Enter the id, integer id: ");
@@ -76,8 +75,17 @@ class Main {
         System.out.print("\nEnter the year: ");
         int year = sc.nextInt();
 
+        if (year < 1990 || year > 2026) {
+            System.out.println("Manufacturing year must be between 1990 and 2026.");
+            return;
+        }
+
         System.out.print("\nEnter the price per day: ");
         int pricePerDay = sc.nextInt();
+        if (pricePerDay <= 0) {
+            System.out.println("Price Per day must greater than zero ");
+            return;
+        }
         if (!isfindCarWithCarId(id) && !isFullCarsCapicity()) {
             Car car = new Car(id, brand, model, year, pricePerDay);
             System.out.print("\nAdd Regular car successfully");
@@ -110,11 +118,23 @@ class Main {
         System.out.print("\nEnter the year: ");
         int year = sc.nextInt();
 
+        if (year < 1990 || year > 2026) {
+            System.out.println("Manufacturing year must be between 1990 and 2026.");
+            return;
+        }
+
         System.out.print("\nEnter the price per day: ");
         int pricePerDay = sc.nextInt();
-
+        if (pricePerDay <= 0) {
+            System.out.println("Price Per day must greater than zero ");
+            return;
+        }
         System.out.print("\nEnter insurance fee: ");
         double insuranceFee = sc.nextDouble();
+        if (insuranceFee < 0) {
+            System.out.println("Price Per day must greater than zero or equal zero ");
+            return;
+        }
 
         if (!isfindCarWithCarId(id) && !isFullCarsCapicity()) {
             LuxuryCar car = new LuxuryCar(id, brand, model, year, pricePerDay, insuranceFee);
@@ -202,7 +222,6 @@ class Main {
 
     }
 
-
     Car findCarById(int id) {
         for (int i = 0; i < currentCar; i++) {
             if (cars[i].getCarID() == id) return cars[i];
@@ -218,9 +237,7 @@ class Main {
         return null;
     }
 
-
     void rentCar() {
-        // Customer ID, car ID, number of days.
 
         System.out.print("Enter customer id: ");
         int customerId = sc.nextInt();
@@ -231,7 +248,7 @@ class Main {
         }
         Customer customer = findCustomerByCustomerId(customerId);
 
-        if (customer.getRentedCarId() == -1) {
+        if (customer.getRentedCarId() != -1) {
             System.out.println("\n This customer have a car already ");
             return;
         }
@@ -247,24 +264,25 @@ class Main {
 
         Car car = findCarById(carId);
 
-        if(!car.isAvailable()){
+        if (!car.isAvailable()) {
             System.out.println("\nThis car not avaliable now ");
+            return;
         }
 
         System.out.print("\nEnter number of days for rent: ");
         int daysRent = sc.nextInt();
 
-        if(daysRent <=0 ){
+        if (daysRent <= 0) {
             System.out.println("\nInvalid number enter a valid number :| ");
             return;
         }
 
         boolean isLuxury = false;
 
-        if(car.getClass() == LuxuryCar.class){
+        if (car.getClass() == LuxuryCar.class) {
             isLuxury = true;
-            if(((LuxuryCar) car).getMinRentalDays() > daysRent){
-                System.out.println("Minumnuim number for rent luxury car is " +  ((LuxuryCar) car).getMinRentalDays());
+            if (((LuxuryCar) car).getMinRentalDays() > daysRent) {
+                System.out.println("Minumnuim number for rent luxury car is " + ((LuxuryCar) car).getMinRentalDays());
                 System.out.println("Try again with a larger number :| ");
                 return;
             }
@@ -273,7 +291,7 @@ class Main {
         car.setAvailable(false);
 
         double cost = daysRent * car.getPricePerDay() + car.getTaxRate();
-        if(isLuxury){
+        if (isLuxury) {
             cost += ((LuxuryCar) car).getInsuranceFee();
         }
 
@@ -289,6 +307,86 @@ class Main {
         System.out.println("--------------------------------------");
     }
 
+    void returnCar() {
+
+        System.out.print("Enter customer id: ");
+        int customerId = sc.nextInt();
+
+        if (!isfindCustomerWithCustomerId(customerId)) {
+            System.out.println("\nCustomer does not exist\n-------------------");
+            return;
+        }
+        Customer customer = findCustomerByCustomerId(customerId);
+
+        if (customer.getRentedCarId() == -1) {
+            System.out.println("\n This customer have no car already ");
+            return;
+        }
+        int carId = customer.getRentedCarId();
+
+        Car car = findCarById(carId);
+
+        car.setAvailable(true);
+        customer.setRentedCarId(-1);
+        customer.setPaid(0);
+
+        System.out.println("\n Return Car done \n--------------------------------------");
+    }
+
+    void returnCarById() {
+        System.out.print("\nEnter Car Id: ");
+        int carId = sc.nextInt();
+
+        if (!isfindCarWithCarId(carId)) {
+
+            System.out.println("\nCar does not exist\n-------------------");
+            return;
+        }
+
+        Car car = findCarById(carId);
+
+        System.out.println(car);
+
+        System.out.println("---------------");
+    }
+
+    void searchCarByBrand() {
+
+        int match = 0;
+        System.out.print("Enter the brand name: ");
+        sc.nextLine();
+        String brand = sc.nextLine();
+
+        for (int i = 0; i < currentCar; i++) {
+            if (cars[i].getBrand().equalsIgnoreCase(brand)) {
+                match++;
+                System.out.println(cars[i]);
+            }
+
+
+        }
+
+        if (match == 0) {
+            System.out.println("Not found cars \n -----------------");
+            return;
+        }
+
+        System.out.println("number of matches car is: " + match + "\n ----------------");
+
+    }
+
+    void displayAllCustomer() {
+        System.out.println("Customers: ");
+
+        for (int i = 0; i < currentCustomer; i++) {
+            System.out.println(customers[i]);
+            if (customers[i].getRentedCarId() != -1) {
+                System.out.println("his rented car:\n " + cars[customers[i].getRentedCarId()]);
+            }
+            System.out.println("--------");
+        }
+
+    }
 
     public void main(String[] args) {
 
@@ -315,9 +413,22 @@ class Main {
 
                 case 5 -> avaliableCares();
 
+                case 6 -> rentCar();
+
+                case 7 -> returnCar();
+
+                case 8 -> returnCarById();
+
+                case 9 -> searchCarByBrand();
+
+                case 10 -> displayAllCustomer();
             }
 
         }
+
+        System.out.println("Good Bye ");
+        System.out.println("Number of Customer:  " + Customer.getCount());
+        System.out.println("Total Paid: " + Customer.getTotalPaid());
 
 
     }

@@ -1,6 +1,5 @@
 public class Car {
 
-
     private int carID;
     private String brand;
     private String model;
@@ -75,7 +74,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
+        return " Car{" +
                 "carID=" + carID +
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
